@@ -114,6 +114,15 @@ def contacts() -> dict[str, list[ContactData]]:
     return result
 
 
+@lru_cache
+def champion_links() -> dict[str, list[str]]:
+    """prospect domain -> customer domains where one of its contacts previously worked (champion path)."""
+    rng = random.Random(SEED + 3)
+    customers = [a.domain for a in accounts() if a.is_customer]
+    prospects = [a.domain for a in accounts() if not a.is_customer]
+    return {d: [rng.choice(customers)] for d in rng.sample(prospects, 60)}
+
+
 def signals(now: datetime | None = None) -> list[dict]:
     """~120 deterministic raw signal events relative to `now`."""
     now = now or datetime(2026, 1, 1, tzinfo=UTC)

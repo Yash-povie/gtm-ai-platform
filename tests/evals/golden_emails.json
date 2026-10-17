@@ -1,0 +1,1902 @@
+[
+  {
+    "id": "g00",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Stripelike Pay",
+        "industry": "Data & AI",
+        "employee_count": 60,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "Index",
+          "Lightspeed",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Azure",
+          "GCP",
+          "Postgres",
+          "Salesforce",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Noah",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 9
+        }
+      }
+    },
+    "subject": "Stripelike Pay and cloud costs",
+    "body": "Hi Noah,\n\nI saw Stripelike Pay is hiring 9 engineers. With Azure and GCP in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g01",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Datawatch Cloud",
+        "industry": "DevTools",
+        "employee_count": 25,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Insight",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "Postgres",
+          "Snowflake",
+          "Stripe",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Lucas",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Datawatch Cloud and cloud costs",
+    "body": "Hi Lucas,\n\nCongrats on the Series D round of $80M. With Postgres and Snowflake in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g02",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Snowfield Data",
+        "industry": "Healthtech",
+        "employee_count": 120,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Insight",
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "GCP",
+          "Kubernetes",
+          "Okta",
+          "Snowflake",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Arjun",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 6
+        }
+      }
+    },
+    "subject": "Snowfield Data and cloud costs",
+    "body": "Hi Arjun,\n\nI saw Snowfield Data is hiring 6 engineers. With GCP and Kubernetes in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g03",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Cobalt Data",
+        "industry": "Data & AI",
+        "employee_count": 800,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Lightspeed",
+          "Tiger Global",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "Datadog",
+          "Salesforce",
+          "Segment",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Sara",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series A"
+        }
+      }
+    },
+    "subject": "Cobalt Data and cloud costs",
+    "body": "Hi Sara,\n\nCongrats on the Series A round of $15M. With Databricks and Datadog in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g04",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Sable Secure",
+        "industry": "Data & AI",
+        "employee_count": 4000,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Insight",
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "Datadog",
+          "HubSpot",
+          "Kafka",
+          "Salesforce",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 10
+        }
+      }
+    },
+    "subject": "Sable Secure and cloud costs",
+    "body": "Hi Priya,\n\nI saw Sable Secure is hiring 10 engineers. With Datadog and HubSpot in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g05",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Kestrel Data",
+        "industry": "Fintech",
+        "employee_count": 25,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index",
+          "Insight",
+          "a16z"
+        ],
+        "tech_stack": [
+          "HubSpot",
+          "Kubernetes",
+          "Segment",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Lucas",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Kestrel Data and cloud costs",
+    "body": "Hi Lucas,\n\nCongrats on the Seed round of $150M. With HubSpot and Kubernetes in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g06",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Fable AI",
+        "industry": "Fintech",
+        "employee_count": 250,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Accel"
+        ],
+        "tech_stack": [
+          "Azure",
+          "Postgres",
+          "Salesforce"
+        ]
+      },
+      "contact": {
+        "first_name": "Sara",
+        "title": "Head of Data"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 4
+        }
+      }
+    },
+    "subject": "Fable AI and cloud costs",
+    "body": "Hi Sara,\n\nI saw Fable AI is hiring 4 engineers. With Azure and Postgres in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g07",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Apex Pay",
+        "industry": "Cybersecurity",
+        "employee_count": 1500,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "Greylock",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "Datadog",
+          "Kubernetes",
+          "Okta",
+          "Salesforce",
+          "Segment",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series A"
+        }
+      }
+    },
+    "subject": "Apex Pay and cloud costs",
+    "body": "Hi Priya,\n\nCongrats on the Series A round of $5M. With Databricks and Datadog in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g08",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Nimbus Grid",
+        "industry": "Cybersecurity",
+        "employee_count": 250,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Index"
+        ],
+        "tech_stack": [
+          "AWS",
+          "GCP",
+          "Salesforce",
+          "Segment"
+        ]
+      },
+      "contact": {
+        "first_name": "Zoe",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Nimbus Grid and cloud costs",
+    "body": "Hi Zoe,\n\nI saw Nimbus Grid is hiring 5 engineers. With AWS and GCP in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g09",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Kestrel AI",
+        "industry": "Healthtech",
+        "employee_count": 4000,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Index",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "Datadog",
+          "Okta",
+          "Postgres",
+          "Salesforce",
+          "Snowflake",
+          "Stripe",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Arjun",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series A"
+        }
+      }
+    },
+    "subject": "Kestrel AI and cloud costs",
+    "body": "Hi Arjun,\n\nCongrats on the Series A round of $80M. With Datadog and Okta in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g10",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Bright Secure",
+        "industry": "DevTools",
+        "employee_count": 400,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "Azure",
+          "HubSpot",
+          "Kafka",
+          "Postgres"
+        ]
+      },
+      "contact": {
+        "first_name": "Maya",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 12
+        }
+      }
+    },
+    "subject": "Bright Secure and cloud costs",
+    "body": "Hi Maya,\n\nI saw Bright Secure is hiring 12 engineers. With Azure and HubSpot in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g11",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Orbit Cloud",
+        "industry": "E-commerce",
+        "employee_count": 4000,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Index",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Azure",
+          "HubSpot",
+          "Okta"
+        ]
+      },
+      "contact": {
+        "first_name": "Sara",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Orbit Cloud and cloud costs",
+    "body": "Hi Sara,\n\nCongrats on the Series C round of $80M. With AWS and Azure in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g12",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Works",
+        "industry": "Data & AI",
+        "employee_count": 4000,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Accel",
+          "Sequoia",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "Snowflake",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Sara",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Argo Works and cloud costs",
+    "body": "Hi Sara,\n\nI saw Argo Works is hiring 5 engineers. With AWS and Databricks in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g13",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Kestrel Works",
+        "industry": "DevTools",
+        "employee_count": 25,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index"
+        ],
+        "tech_stack": [
+          "GCP",
+          "Kubernetes",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Nina",
+        "title": "Head of Data"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Kestrel Works and cloud costs",
+    "body": "Hi Nina,\n\nCongrats on the Series D round of $150M. With GCP and Kubernetes in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g14",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Halcyon Grid",
+        "industry": "Fintech",
+        "employee_count": 60,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Insight",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "Datadog",
+          "HubSpot",
+          "Kubernetes",
+          "Okta",
+          "Segment",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 9
+        }
+      }
+    },
+    "subject": "Halcyon Grid and cloud costs",
+    "body": "Hi Ethan,\n\nI saw Halcyon Grid is hiring 9 engineers. With Databricks and Datadog in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g15",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Quanta Labs",
+        "industry": "E-commerce",
+        "employee_count": 60,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Lightspeed",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Azure",
+          "Datadog",
+          "GCP",
+          "Kafka",
+          "Kubernetes",
+          "Snowflake",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Maya",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Quanta Labs and cloud costs",
+    "body": "Hi Maya,\n\nCongrats on the Seed round of $150M. With Azure and Datadog in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g16",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Lumen Health",
+        "industry": "DevTools",
+        "employee_count": 400,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Lightspeed",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "AWS",
+          "GCP",
+          "Kafka",
+          "Okta",
+          "Segment",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Arjun",
+        "title": "Head of Data"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 4
+        }
+      }
+    },
+    "subject": "Lumen Health and cloud costs",
+    "body": "Hi Arjun,\n\nI saw Lumen Health is hiring 4 engineers. With AWS and GCP in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g17",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Cobalt Cloud",
+        "industry": "Data & AI",
+        "employee_count": 4000,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Azure",
+          "GCP",
+          "Kafka",
+          "Okta",
+          "Salesforce"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Cobalt Cloud and cloud costs",
+    "body": "Hi Ethan,\n\nCongrats on the Series D round of $15M. With AWS and Azure in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g18",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Cloud",
+        "industry": "Fintech",
+        "employee_count": 400,
+        "funding_stage": "Series B",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "a16z"
+        ],
+        "tech_stack": [
+          "Salesforce",
+          "Segment",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Omar",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 12
+        }
+      }
+    },
+    "subject": "Argo Cloud and cloud costs",
+    "body": "Hi Omar,\n\nI saw Argo Cloud is hiring 12 engineers. With Salesforce and Segment in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g19",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Grid",
+        "industry": "Data & AI",
+        "employee_count": 120,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Kubernetes",
+          "Okta",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Liam",
+        "title": "Head of Data"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series A"
+        }
+      }
+    },
+    "subject": "Argo Grid and cloud costs",
+    "body": "Hi Liam,\n\nCongrats on the Series A round of $15M. With AWS and Kubernetes in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g20",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Vertex Data",
+        "industry": "DevTools",
+        "employee_count": 250,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Index"
+        ],
+        "tech_stack": [
+          "HubSpot",
+          "Okta",
+          "Snowflake",
+          "Stripe",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Zoe",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 7
+        }
+      }
+    },
+    "subject": "Vertex Data and cloud costs",
+    "body": "Hi Zoe,\n\nI saw Vertex Data is hiring 7 engineers. With HubSpot and Okta in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g21",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Tidal Secure",
+        "industry": "Cybersecurity",
+        "employee_count": 60,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Accel",
+          "Greylock",
+          "Index"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "Datadog",
+          "Kafka",
+          "Salesforce",
+          "Stripe",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Lucas",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Tidal Secure and cloud costs",
+    "body": "Hi Lucas,\n\nCongrats on the Series C round of $40M. With AWS and Databricks in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g22",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Apex Grid",
+        "industry": "Cybersecurity",
+        "employee_count": 400,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Index",
+          "Insight",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Datadog",
+          "Okta",
+          "Segment",
+          "Snowflake",
+          "Terraform",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Noah",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 4
+        }
+      }
+    },
+    "subject": "Apex Grid and cloud costs",
+    "body": "Hi Noah,\n\nI saw Apex Grid is hiring 4 engineers. With AWS and Datadog in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g23",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Apex Systems",
+        "industry": "Healthtech",
+        "employee_count": 800,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "HubSpot",
+          "Okta",
+          "Snowflake",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Ava",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Apex Systems and cloud costs",
+    "body": "Hi Ava,\n\nCongrats on the Seed round of $80M. With HubSpot and Okta in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g24",
+    "label": "clean",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Vertex Works",
+        "industry": "DevTools",
+        "employee_count": 60,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index",
+          "Insight",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "Kafka",
+          "Okta",
+          "Segment",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Liam",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Vertex Works and cloud costs",
+    "body": "Hi Liam,\n\nI saw Vertex Works is hiring 5 engineers. With Kafka and Okta in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g25",
+    "label": "hallucination",
+    "planted_claim": "$65M",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Pivot Cloud",
+        "industry": "Data & AI",
+        "employee_count": 4000,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Accel",
+          "Index"
+        ],
+        "tech_stack": [
+          "Datadog",
+          "Kafka",
+          "Postgres",
+          "Segment",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Pivot Cloud and cloud costs",
+    "body": "Hi Ethan,\n\nCongrats on the Series C round of $65M. With Datadog and Kafka in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g26",
+    "label": "hallucination",
+    "planted_claim": "AWS",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Orbit Pay",
+        "industry": "Healthtech",
+        "employee_count": 800,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Accel",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "Azure",
+          "Datadog",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 10
+        }
+      }
+    },
+    "subject": "Orbit Pay and cloud costs",
+    "body": "Hi Ethan,\n\nI saw Orbit Pay is hiring 10 engineers. With Azure and Datadog in your stack, your AWS bill and cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g27",
+    "label": "hallucination",
+    "planted_claim": "Accel",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Health",
+        "industry": "Cybersecurity",
+        "employee_count": 4000,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Insight",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "Stripe",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Liam",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Argo Health and cloud costs",
+    "body": "Hi Liam,\n\nCongrats on the Series C round of $80M. With Databricks and Stripe in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nGreat to see Accel backing you. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g28",
+    "label": "hallucination",
+    "planted_claim": "47 open roles",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Nimbus Health",
+        "industry": "Healthtech",
+        "employee_count": 1500,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Greylock",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "Datadog",
+          "Okta",
+          "Postgres",
+          "Snowflake",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Arjun",
+        "title": "Head of Data"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 10
+        }
+      }
+    },
+    "subject": "Nimbus Health and cloud costs",
+    "body": "Hi Arjun,\n\nI saw Nimbus Health is hiring 10 engineers. With AWS and Databricks in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nI noticed your 47 open roles. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g29",
+    "label": "hallucination",
+    "planted_claim": "Jonathan",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Ironclad Works",
+        "industry": "Fintech",
+        "employee_count": 1500,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Azure",
+          "GCP",
+          "Postgres",
+          "Salesforce",
+          "Segment",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Ironclad Works and cloud costs",
+    "body": "Hi Jonathan,\n\nCongrats on the Series D round of $15M. With AWS and Azure in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g30",
+    "label": "hallucination",
+    "planted_claim": "$30M",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Pivot Health",
+        "industry": "Healthtech",
+        "employee_count": 1500,
+        "funding_stage": "Series B",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "GCP",
+          "Kafka",
+          "Postgres",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Ava",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Pivot Health and cloud costs",
+    "body": "Hi Ava,\n\nI saw Pivot Health is hiring 5 engineers. With AWS and Databricks in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nCongrats on your $30M raise. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g31",
+    "label": "hallucination",
+    "planted_claim": "AWS",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Vertex Labs",
+        "industry": "DevTools",
+        "employee_count": 250,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Greylock"
+        ],
+        "tech_stack": [
+          "Azure",
+          "Datadog",
+          "GCP",
+          "Postgres",
+          "Segment",
+          "Snowflake",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Nina",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Vertex Labs and cloud costs",
+    "body": "Hi Nina,\n\nCongrats on the Seed round of $40M. With Azure and Datadog in your stack, your AWS bill and cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g32",
+    "label": "hallucination",
+    "planted_claim": "Sequoia",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Helio Grid",
+        "industry": "Fintech",
+        "employee_count": 400,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "a16z"
+        ],
+        "tech_stack": [
+          "GCP",
+          "HubSpot",
+          "Salesforce",
+          "Segment",
+          "Snowflake",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Lucas",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 7
+        }
+      }
+    },
+    "subject": "Helio Grid and cloud costs",
+    "body": "Hi Lucas,\n\nI saw Helio Grid is hiring 7 engineers. With GCP and HubSpot in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nGreat to see Sequoia backing you. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g33",
+    "label": "hallucination",
+    "planted_claim": "47 open roles",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Cobalt Grid",
+        "industry": "Logistics",
+        "employee_count": 4000,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index",
+          "Insight"
+        ],
+        "tech_stack": [
+          "Datadog",
+          "GCP",
+          "Kafka",
+          "Kubernetes",
+          "Snowflake",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Arjun",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Cobalt Grid and cloud costs",
+    "body": "Hi Arjun,\n\nCongrats on the Series C round of $150M. With Datadog and GCP in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nI noticed your 47 open roles. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g34",
+    "label": "hallucination",
+    "planted_claim": "Jonathan",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Zenith Health",
+        "industry": "Fintech",
+        "employee_count": 4000,
+        "funding_stage": "Series B",
+        "funding_amount_usd": 40000000,
+        "investors": [
+          "Accel",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "HubSpot",
+          "Kubernetes",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Zenith Health and cloud costs",
+    "body": "Hi Jonathan,\n\nI saw Zenith Health is hiring 5 engineers. With Databricks and HubSpot in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g35",
+    "label": "hallucination",
+    "planted_claim": "$105M",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Quanta AI",
+        "industry": "Data & AI",
+        "employee_count": 1500,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "a16z"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "HubSpot",
+          "Okta",
+          "Postgres",
+          "Salesforce",
+          "Segment",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Ethan",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Quanta AI and cloud costs",
+    "body": "Hi Ethan,\n\nCongrats on the Series C round of $105M. With Databricks and HubSpot in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g36",
+    "label": "hallucination",
+    "planted_claim": "AWS",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Halcyon Health",
+        "industry": "E-commerce",
+        "employee_count": 800,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "a16z"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "Datadog",
+          "Kubernetes",
+          "Postgres",
+          "Salesforce",
+          "Segment",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Sara",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 12
+        }
+      }
+    },
+    "subject": "Halcyon Health and cloud costs",
+    "body": "Hi Sara,\n\nI saw Halcyon Health is hiring 12 engineers. With Databricks and Datadog in your stack, your AWS bill and cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g37",
+    "label": "hallucination",
+    "planted_claim": "Sequoia",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Sable Data",
+        "industry": "Healthtech",
+        "employee_count": 120,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 5000000,
+        "investors": [
+          "Lightspeed",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "GCP",
+          "Okta",
+          "Stripe",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Ava",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Sable Data and cloud costs",
+    "body": "Hi Ava,\n\nCongrats on the Seed round of $5M. With Databricks and GCP in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nGreat to see Sequoia backing you. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g38",
+    "label": "hallucination",
+    "planted_claim": "47 open roles",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Bright Cloud",
+        "industry": "Logistics",
+        "employee_count": 400,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Index",
+          "Insight",
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "HubSpot",
+          "Kafka",
+          "Snowflake",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 10
+        }
+      }
+    },
+    "subject": "Bright Cloud and cloud costs",
+    "body": "Hi Priya,\n\nI saw Bright Cloud is hiring 10 engineers. With HubSpot and Kafka in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nI noticed your 47 open roles. Worth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g39",
+    "label": "hallucination",
+    "planted_claim": "Jonathan",
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Pay",
+        "industry": "Cybersecurity",
+        "employee_count": 25,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Greylock",
+          "a16z"
+        ],
+        "tech_stack": [
+          "Segment",
+          "Snowflake",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Maya",
+        "title": "CTO"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Argo Pay and cloud costs",
+    "body": "Hi Jonathan,\n\nCongrats on the Series D round of $150M. With Segment and Snowflake in your stack, cloud spend tends to climb fast. We help engineering teams cut cloud costs with automated spend optimization.\n\nWorth a 15-minute chat next week?\n\nBest,\nSam"
+  },
+  {
+    "id": "g40",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Quanta Cloud",
+        "industry": "Fintech",
+        "employee_count": 1500,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "Datadog",
+          "Okta",
+          "Postgres",
+          "Salesforce",
+          "Snowflake"
+        ]
+      },
+      "contact": {
+        "first_name": "Omar",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 4
+        }
+      }
+    },
+    "subject": "Quanta Cloud and cloud costs",
+    "body": "Hi Omar,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Quanta Cloud! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g41",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Ironclad Pay",
+        "industry": "Fintech",
+        "employee_count": 60,
+        "funding_stage": "Series A",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Accel",
+          "Greylock"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Azure",
+          "Databricks",
+          "Datadog",
+          "HubSpot",
+          "Segment",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Lucas",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series A"
+        }
+      }
+    },
+    "subject": "Ironclad Pay and cloud costs",
+    "body": "Hi Lucas,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Ironclad Pay! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g42",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Sable Systems",
+        "industry": "E-commerce",
+        "employee_count": 800,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Accel",
+          "Greylock"
+        ],
+        "tech_stack": [
+          "Azure",
+          "Databricks",
+          "GCP",
+          "Kubernetes",
+          "Segment"
+        ]
+      },
+      "contact": {
+        "first_name": "Zoe",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 5
+        }
+      }
+    },
+    "subject": "Sable Systems and cloud costs",
+    "body": "Hi Zoe,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Sable Systems! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g43",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Quanta Health",
+        "industry": "Healthtech",
+        "employee_count": 800,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Index"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Kafka",
+          "Postgres",
+          "Segment",
+          "Stripe",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Zoe",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Seed"
+        }
+      }
+    },
+    "subject": "Quanta Health and cloud costs",
+    "body": "Hi Zoe,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Quanta Health! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g44",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Vertex AI",
+        "industry": "Healthtech",
+        "employee_count": 120,
+        "funding_stage": "Series B",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Accel",
+          "Greylock",
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Databricks",
+          "GCP",
+          "Segment",
+          "Snowflake",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Ava",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 7
+        }
+      }
+    },
+    "subject": "Vertex AI and cloud costs",
+    "body": "Hi Ava,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Vertex AI! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g45",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Helio Data",
+        "industry": "Fintech",
+        "employee_count": 120,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Greylock"
+        ],
+        "tech_stack": [
+          "HubSpot",
+          "Kafka",
+          "Postgres",
+          "Stripe",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Helio Data and cloud costs",
+    "body": "Hi Priya,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Helio Data! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g46",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Lumen Grid",
+        "industry": "Cybersecurity",
+        "employee_count": 120,
+        "funding_stage": "Seed",
+        "funding_amount_usd": 150000000,
+        "investors": [
+          "Lightspeed"
+        ],
+        "tech_stack": [
+          "Datadog",
+          "HubSpot",
+          "Kafka",
+          "Kubernetes",
+          "Stripe"
+        ]
+      },
+      "contact": {
+        "first_name": "Liam",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 4
+        }
+      }
+    },
+    "subject": "Lumen Grid and cloud costs",
+    "body": "Hi Liam,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Lumen Grid! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g47",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Halcyon Data",
+        "industry": "Logistics",
+        "employee_count": 120,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Index",
+          "Tiger Global"
+        ],
+        "tech_stack": [
+          "Databricks",
+          "HubSpot",
+          "Kafka",
+          "Kubernetes",
+          "Okta",
+          "Postgres",
+          "Terraform"
+        ]
+      },
+      "contact": {
+        "first_name": "Zoe",
+        "title": "Director of Sales"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series C"
+        }
+      }
+    },
+    "subject": "Halcyon Data and cloud costs",
+    "body": "Hi Zoe,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Halcyon Data! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g48",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Argo Systems",
+        "industry": "Logistics",
+        "employee_count": 60,
+        "funding_stage": "Series C",
+        "funding_amount_usd": 80000000,
+        "investors": [
+          "Accel",
+          "Sequoia"
+        ],
+        "tech_stack": [
+          "AWS",
+          "Okta",
+          "Stripe",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Priya",
+        "title": "VP of Engineering"
+      },
+      "signal": {
+        "type": "hiring_spike",
+        "payload": {
+          "open_roles": 10
+        }
+      }
+    },
+    "subject": "Argo Systems and cloud costs",
+    "body": "Hi Priya,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Argo Systems! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  },
+  {
+    "id": "g49",
+    "label": "spam",
+    "planted_claim": null,
+    "value_prop": "We help engineering teams cut cloud costs with automated spend optimization.",
+    "source_facts": {
+      "account": {
+        "name": "Bright AI",
+        "industry": "Cybersecurity",
+        "employee_count": 1500,
+        "funding_stage": "Series D",
+        "funding_amount_usd": 15000000,
+        "investors": [
+          "Greylock",
+          "Index"
+        ],
+        "tech_stack": [
+          "Azure",
+          "GCP",
+          "Kubernetes",
+          "dbt"
+        ]
+      },
+      "contact": {
+        "first_name": "Maya",
+        "title": "VP of Marketing"
+      },
+      "signal": {
+        "type": "funding_round",
+        "payload": {
+          "round": "Series D"
+        }
+      }
+    },
+    "subject": "Bright AI and cloud costs",
+    "body": "Hi Maya,\n\nI hope this finds you well!! Just circling back, my friend. We help engineering teams cut cloud costs with automated spend optimization. This is a game-changer and pure synergy for Bright AI! Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. Act now while this limited time offer lasts. \n\nWorth a chat?"
+  }
+]
