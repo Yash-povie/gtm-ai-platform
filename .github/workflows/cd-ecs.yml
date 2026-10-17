@@ -1,10 +1,8 @@
 name: cd-ecs
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  workflow_dispatch:   # manual only: needs an AWS account, the AWS_DEPLOY_ROLE_ARN secret and applied Terraform
 
-# Deploys only after ci passes on the same commit (require the "ci" check via branch protection).
+# Run after the "ci" workflow is green on the same commit.
 permissions:
   id-token: write   # OIDC to AWS - no long-lived keys
   contents: read

@@ -1,5 +1,7 @@
 # GTM AI Platform
 
+[![ci](https://github.com/Yash-povie/gtm-ai-platform/actions/workflows/ci.yml/badge.svg)](https://github.com/Yash-povie/gtm-ai-platform/actions/workflows/ci.yml)
+
 Five go-to-market automation systems on one shared Python platform: an autonomous SDR agent, a signal-to-meeting
 engine, an MCP command center, an outbound QA layer, and a lookalike account finder. Everything outbound passes
 through one human-in-the-loop safety gate, and everything runs offline against deterministic sandbox data.
