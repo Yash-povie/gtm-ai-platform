@@ -171,6 +171,23 @@ async def test_reply_handling_unsubscribe_and_positive(redis, audit_sink):
     assert contact["is_unsubscribed"] and contact["email"] in {e for e, _ in await deps.repo.suppression_entries()}
 
 
+async def test_replayed_approval_id_cannot_approve_the_next_email(redis, audit_sink):
+    from gtm_safety.gate import ApprovalError
+
+    deps = build_deps(repo=MemoryRepo(), redis=redis)
+    runner = SdrRunner(deps)
+    st = await runner.start("Fintech companies using AWS", "replay", max_accounts=3)
+    assert st["accounts_queued"] >= 2, "need 2+ accounts to prove the replay is harmless"
+    first = st["pending_approval_ids"][0]
+    st = await runner.resume_by_approval(first, {"decision": "approved", "reviewer": "a"})
+    second = st["pending_approval_ids"][0]
+    assert second != first and len(deps.sender.sent) == 1
+    with pytest.raises(ApprovalError):
+        await runner.resume_by_approval(first, {"decision": "approved", "reviewer": "attacker"})
+    assert len(deps.sender.sent) == 1  # the second email is still waiting for its own approval
+    assert (await deps.repo.get_approval(second))["status"] == "pending"
+
+
 def test_reply_classifier():
     assert classify_reply("I'm out of office until Monday") == "ooo"
     assert classify_reply("not interested, thanks") == "negative"

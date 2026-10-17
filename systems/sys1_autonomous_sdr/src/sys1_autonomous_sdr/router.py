@@ -1,5 +1,7 @@
 """FastAPI endpoints: /api/v1/sdr/*"""
 
+import logging
+
 from fastapi import APIRouter, BackgroundTasks, HTTPException
 from gtm_safety.gate import ApprovalError
 from pydantic import BaseModel, Field
@@ -8,7 +10,16 @@ from sys1_autonomous_sdr.graph import get_runtime
 from sys1_autonomous_sdr.nodes import handle_reply
 from sys1_autonomous_sdr.prompts import DEFAULT_VALUE_PROP
 
+log = logging.getLogger(__name__)
 router = APIRouter(prefix="/api/v1/sdr", tags=["sdr"])
+
+
+async def _run_campaign(*args) -> None:
+    """Background runner: never let a failed campaign vanish silently."""
+    try:
+        await get_runtime().runner.start(*args)
+    except Exception:
+        log.exception("SDR campaign %s failed", args[1])
 
 
 class CampaignRequest(BaseModel):
@@ -34,7 +45,7 @@ class ReplyRequest(BaseModel):
 async def launch(req: CampaignRequest, bg: BackgroundTasks) -> dict:
     rt = get_runtime()
     thread_id = f"{req.campaign_id}:{__import__('uuid').uuid4().hex[:8]}"
-    bg.add_task(rt.runner.start, req.icp_prompt, req.campaign_id, req.max_accounts, req.value_prop, thread_id)
+    bg.add_task(_run_campaign, req.icp_prompt, req.campaign_id, req.max_accounts, req.value_prop, thread_id)
     return {"thread_id": thread_id, "status_url": f"/api/v1/sdr/campaigns/{thread_id}"}
 
 

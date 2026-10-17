@@ -1,4 +1,11 @@
-.PHONY: up down migrate seed test lint mcp-inspect demo-all
+# Windows: psycopg needs the selector event loop, so launch uvicorn through python (Linux/Docker can use uvicorn directly).
+api:
+	uv run python -c "import asyncio,uvicorn; asyncio.set_event_loop_policy(getattr(asyncio,'WindowsSelectorEventLoopPolicy',asyncio.DefaultEventLoopPolicy)()); uvicorn.run('apps.api_gateway.main:app', port=8000, loop='none')"
+
+worker:
+	uv run arq apps.worker.main.WorkerSettings
+
+.PHONY: api worker up down migrate seed test lint mcp-inspect demo-all
 
 up:
 	docker compose up -d postgres redis neo4j n8n phoenix

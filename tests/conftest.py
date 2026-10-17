@@ -16,7 +16,16 @@ def _port_open(host: str, port: int) -> bool:
         return False
 
 
-SERVICES_UP = _port_open("localhost", 5432) and _port_open("localhost", 6379)
+def _services_up() -> bool:
+    from urllib.parse import urlparse
+
+    from gtm_core.config import get_settings
+
+    db = urlparse(get_settings().database_url.replace("+asyncpg", ""))
+    return _port_open(db.hostname or "localhost", db.port or 5432) and _port_open("localhost", 6379)
+
+
+SERVICES_UP = _services_up()
 
 
 def pytest_collection_modifyitems(config, items):

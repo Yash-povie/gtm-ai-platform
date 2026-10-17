@@ -19,6 +19,7 @@ from gtm_core.repo import SqlRepo
 from gtm_integrations.slack import verify_signature
 from gtm_safety import audit as audit_mod
 from gtm_safety import compliance
+from gtm_safety.gate import ApprovalError
 from sys1_autonomous_sdr.graph import SdrRunner, SdrRuntime, postgres_checkpointer, set_runtime
 from sys1_autonomous_sdr.router import router as sdr_router
 from sys2_signal_engine.router import router as signals_router
@@ -157,4 +158,6 @@ async def slack_interactions(request: Request) -> dict:
         st = await rt.runner.resume_by_approval(action["value"], {"decision": verdict, "reviewer": reviewer})
     except LookupError as e:
         raise HTTPException(404, str(e)) from e
+    except ApprovalError:
+        return {"text": "This approval was already handled; nothing was changed."}
     return {"text": f"{verdict}. Thread {st['thread_id']} {'finished' if st['finished'] else 'continuing'}."}

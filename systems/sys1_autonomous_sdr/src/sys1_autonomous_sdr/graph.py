@@ -13,7 +13,7 @@ from gtm_integrations.clay import ClayClient
 from gtm_integrations.hubspot import HubSpotClient
 from gtm_integrations.salesforce import SalesforceClient
 from gtm_integrations.slack import SlackClient
-from gtm_safety.gate import SafetyGate
+from gtm_safety.gate import ApprovalError, SafetyGate
 from gtm_safety.rate_limiter import RateLimiter
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
@@ -142,7 +142,11 @@ class SdrRunner:
         approval = await self.deps.repo.get_approval(approval_id)
         if approval is None or "thread_id" not in approval["payload_snapshot"]:
             raise LookupError(f"no resumable thread for approval {approval_id}")
-        return await self.resume(approval["payload_snapshot"]["thread_id"], decision)
+        thread_id = approval["payload_snapshot"]["thread_id"]
+        # A stale/replayed approval id must never approve a *different* paused email on the same thread.
+        if approval_id not in (await self.status(thread_id))["pending_approval_ids"]:
+            raise ApprovalError(f"approval {approval_id} is not awaiting a decision")
+        return await self.resume(thread_id, decision)
 
     async def status(self, thread_id: str) -> dict:
         snap = await self.graph.aget_state(self._cfg(thread_id))
@@ -155,7 +159,7 @@ class SdrRunner:
             "completed": len(v.get("completed_drafts", [])),
             "pending_approvals": len(interrupts),
             "pending_approval_ids": [i.value.get("approval_id") for i in interrupts],
-            "finished": not snap.next,
+            "finished": bool(v) and not snap.next,  # an unknown / not-yet-started thread is not "finished"
             "errors": v.get("errors", []),
             "drafts": [
                 {k: x.get(k) for k in ("draft_id", "account_domain", "contact_email", "safety_tier", "approval_status",

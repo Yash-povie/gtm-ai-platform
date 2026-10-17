@@ -1,6 +1,8 @@
 """ARQ worker: signal processing, long-running campaigns and approval expiry."""
 
+import asyncio
 import os
+import sys
 from contextlib import AsyncExitStack
 
 from arq import cron
@@ -13,6 +15,9 @@ from gtm_safety import audit as audit_mod
 from sys1_autonomous_sdr.graph import SdrRunner, SdrRuntime, postgres_checkpointer, set_runtime
 from sys2_signal_engine.router import process_event
 from sys3_command_center_mcp.services import build_services
+
+if sys.platform == "win32":  # psycopg (LangGraph checkpointer) cannot run on the default Proactor loop
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 async def startup(ctx: dict) -> None:
@@ -29,7 +34,8 @@ async def startup(ctx: dict) -> None:
 
 
 async def shutdown(ctx: dict) -> None:
-    await ctx["stack"].aclose()
+    if "stack" in ctx:  # startup may have failed before the stack existed
+        await ctx["stack"].aclose()
 
 
 async def process_signal_job(ctx: dict, events: list[dict]) -> list[dict]:

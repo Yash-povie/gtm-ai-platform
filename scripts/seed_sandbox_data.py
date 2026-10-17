@@ -63,7 +63,7 @@ async def seed(skip_graph: bool) -> dict[str, int]:
 
         n_signals = 0
         for e in dataset.signals():
-            key = hashlib.sha256(f"seed|{e['domain']}|{e['signal_type']}|{e['occurred_at']}".encode()).hexdigest()[:32]
+            key = hashlib.sha256(f"seed|{e['domain']}|{e['signal_type']}".encode()).hexdigest()[:32]  # stable across re-seeds
             strength = signal_strength(e["signal_type"])
             await s.execute(
                 insert(Signal)
@@ -104,6 +104,9 @@ async def seed(skip_graph: bool) -> dict[str, int]:
             graph_nodes = await sync_all()
         except ImportError:
             print("sys5 graph_sync not available yet; skipping Neo4j sync")
+    from gtm_core.graph import close_driver
+
+    await close_driver()
     await dispose_engine()
     return {"accounts": len(accts), "contacts": n_contacts, "signals": n_signals, "graph_accounts": graph_nodes}
 

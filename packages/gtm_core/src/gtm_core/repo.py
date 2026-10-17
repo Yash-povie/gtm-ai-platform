@@ -304,6 +304,7 @@ class SqlRepo:
             for k, v in fields.items():
                 setattr(row, k, v)
             await s.flush()
+            await s.refresh(row)  # server defaults/onupdate columns are expired after flush
             return self._d(row)
 
     async def update_account(self, account_id: str, **fields: Any) -> dict:
@@ -429,6 +430,7 @@ class SqlRepo:
         from gtm_core.db import session_scope
         from gtm_core.models import EmailDraft
 
+        fields.setdefault("body_html", "")  # NOT NULL; the HTML part is filled at the safety gate
         for k in ("account_id", "contact_id", "prompt_version_id", "trigger_signal_id"):
             if fields.get(k):
                 fields[k] = uuid.UUID(str(fields[k]))
@@ -436,6 +438,7 @@ class SqlRepo:
             row = EmailDraft(**fields)
             s.add(row)
             await s.flush()
+            await s.refresh(row)  # server defaults/onupdate columns are expired after flush
             return self._d(row)
 
     async def update_draft(self, draft_id: str, **fields: Any) -> dict:
@@ -461,6 +464,7 @@ class SqlRepo:
                 rewrite_suggestion=result.rewrite_suggestion, latency_ms=latency_ms, trace_id=trace_id)
             s.add(row)
             await s.flush()
+            await s.refresh(row)  # server defaults/onupdate columns are expired after flush
             return self._d(row)
 
     async def create_approval(self, **fields: Any) -> dict:
@@ -472,6 +476,7 @@ class SqlRepo:
             row = ApprovalRequest(**fields)
             s.add(row)
             await s.flush()
+            await s.refresh(row)  # server defaults/onupdate columns are expired after flush
             return self._d(row)
 
     async def get_approval(self, approval_id: str) -> dict | None:
