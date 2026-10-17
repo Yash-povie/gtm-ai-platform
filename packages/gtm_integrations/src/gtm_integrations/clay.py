@@ -8,7 +8,7 @@ import json
 import httpx
 from gtm_core.config import get_settings
 
-from gtm_integrations.base import BaseClient, is_mock_key
+from gtm_integrations.base import BaseClient
 from gtm_integrations.fixtures import dataset
 
 SIGNATURE_HEADER = "X-Clay-Signature"
@@ -43,7 +43,6 @@ class ClayClient(BaseClient):
         self.signing_secret = signing_secret or s.clay_signing_secret
         # Mock when pointed at the local mock endpoint.
         super().__init__("mock" if "localhost" in self.webhook_url else "live", **kw)
-        self.mock = self.mock or is_mock_key(self.webhook_url)
 
     async def push_row(self, row: dict, callback_url: str | None = None) -> dict:
         """Push a row to a Clay inbound webhook table; results arrive later via callback."""

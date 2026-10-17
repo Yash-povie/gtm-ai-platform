@@ -87,11 +87,10 @@ class QAJudge:
         resp = await self._get_client().messages.create(
             model=self.model,
             max_tokens=900,
-            temperature=0,
             system=JUDGE_V1_SYSTEM,
             messages=[{"role": "user", "content": _build_user_message(inp)}],
         )
-        raw = _extract_json("".join(b.text for b in resp.content if getattr(b, "type", "") == "text"))
+        raw = _extract_json("".join(getattr(b, "text", "") for b in resp.content))
         # Safety floor: the lower hallucination score wins; claims are the union.
         h = min(float(raw.get("hallucination_score", 0.0)), det.hallucination_score)
         t = float(raw.get("tone_score", det.tone_score))

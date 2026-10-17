@@ -1,0 +1,58 @@
+name: cd-ecs
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Deploys only after ci passes on the same commit (require the "ci" check via branch protection).
+permissions:
+  id-token: write   # OIDC to AWS - no long-lived keys
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+  CLUSTER: gtm-cluster
+  PROJECT: gtm
+
+concurrency:
+  group: deploy-main
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - uses: actions/checkout@v4
+      - uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+      - id: ecr
+        uses: aws-actions/amazon-ecr-login@v2
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
+      - name: Build and push linux/arm64 images
+        run: |
+          for target in api worker; do
+            docker buildx build --platform linux/arm64 --target "$target" \
+              -t "${{ steps.ecr.outputs.registry }}/${PROJECT}-${target}:${GITHUB_SHA}" \
+              -t "${{ steps.ecr.outputs.registry }}/${PROJECT}-${target}:latest" --push .
+          done
+      - name: Run database migrations (one-off ECS task)
+        run: |
+          NETCFG=$(aws ssm get-parameter --name /gtm/deploy/network_config --query Parameter.Value --output text)
+          TASK_ARN=$(aws ecs run-task --cluster "$CLUSTER" --launch-type FARGATE --task-definition ${PROJECT}-api \
+            --network-configuration "$NETCFG" \
+            --overrides '{"containerOverrides":[{"name":"api","command":["alembic","upgrade","head"]}]}' \
+            --query 'tasks[0].taskArn' --output text)
+          aws ecs wait tasks-stopped --cluster "$CLUSTER" --tasks "$TASK_ARN"
+          CODE=$(aws ecs describe-tasks --cluster "$CLUSTER" --tasks "$TASK_ARN" \
+            --query 'tasks[0].containers[0].exitCode' --output text)
+          test "$CODE" = "0" || { echo "migration failed with exit code $CODE"; exit 1; }
+      - name: Rolling update
+        run: |
+          for svc in api worker; do
+            aws ecs update-service --cluster "$CLUSTER" --service ${PROJECT}-${svc}-service --force-new-deployment >/dev/null
+          done
+          aws ecs wait services-stable --cluster "$CLUSTER" --services ${PROJECT}-api-service ${PROJECT}-worker-service

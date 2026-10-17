@@ -35,6 +35,13 @@ TITLES = ["VP of Engineering", "Head of Data", "CTO", "Director of Sales", "VP o
 DEFAULT_TITLES = ["VP of Engineering", "Head of Data", "CTO"]
 
 
+def _json_from(text: str) -> dict:
+    m = re.search(r"\{.*\}", text, re.S)
+    if m is None:
+        raise ValueError("model returned no JSON")
+    return json.loads(m.group(0))
+
+
 class IcpFilters(BaseModel):
     industries: list[str] = Field(default_factory=list)
     funding_stages: list[str] = Field(default_factory=list)
@@ -73,10 +80,10 @@ class IcpParser:
             try:
                 client = self._client or AsyncAnthropic(api_key=get_settings().anthropic_api_key)
                 resp = await client.messages.create(
-                    model=get_settings().llm_primary_model, max_tokens=400, temperature=0, system=ICP_SYSTEM,
+                    model=get_settings().llm_primary_model, max_tokens=400, system=ICP_SYSTEM,
                     messages=[{"role": "user", "content": prompt}])
-                text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
-                return IcpFilters.model_validate(json.loads(re.search(r"\{.*\}", text, re.S).group(0))).model_dump()
+                text = "".join(getattr(b, "text", "") for b in resp.content)
+                return IcpFilters.model_validate(_json_from(text)).model_dump()
             except Exception:  # fall through to deterministic parse
                 pass
         return parse_icp_deterministic(prompt).model_dump()
@@ -125,11 +132,11 @@ class Drafter:
     async def _llm(self, facts: dict, value_prop: str, critique: str | None) -> DraftOut:
         client = self._client or AsyncAnthropic(api_key=get_settings().anthropic_api_key)
         resp = await client.messages.create(
-            model=get_settings().llm_primary_model, max_tokens=700, temperature=0.3, system=DRAFT_SYSTEM,
+            model=get_settings().llm_primary_model, max_tokens=700, system=DRAFT_SYSTEM,
             messages=[{"role": "user", "content": DRAFT_USER.format(
                 facts=json.dumps(facts, default=str, indent=2), value_prop=value_prop, critique=critique or "none")}])
-        text = "".join(b.text for b in resp.content if getattr(b, "type", "") == "text")
-        return DraftOut.model_validate(json.loads(re.search(r"\{.*\}", text, re.S).group(0)))
+        text = "".join(getattr(b, "text", "") for b in resp.content)
+        return DraftOut.model_validate(_json_from(text))
 
     @staticmethod
     def _template(facts: dict, value_prop: str) -> DraftOut:

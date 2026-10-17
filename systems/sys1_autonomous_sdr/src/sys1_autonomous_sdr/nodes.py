@@ -51,7 +51,7 @@ def tier_for(score: float, employee_count: int | None) -> str:
 def pick_contact(contacts: list[dict]) -> dict | None:
     eligible = [c for c in contacts if not c.get("is_unsubscribed") and c.get("email_status") != "bounced"]
     rank = {"c_suite": 0, "vp": 1, "head": 2, "director": 3}
-    eligible.sort(key=lambda c: (rank.get(c.get("seniority"), 9), c["email"]))
+    eligible.sort(key=lambda c: (rank.get(c.get("seniority") or "", 9), c["email"]))
     return eligible[0] if eligible else None
 
 

@@ -54,7 +54,7 @@ class BaseClient:
 
     def __init__(self, api_key: str, *, base_url: str = "", http: httpx.AsyncClient | None = None):
         self.api_key = api_key
-        self.mock = is_mock_key(api_key)
+        self.mock: bool = is_mock_key(api_key)
         self.base_url = base_url
         self._http = http
         self.breaker = CircuitBreaker()
