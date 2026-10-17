@@ -188,6 +188,33 @@ async def test_replayed_approval_id_cannot_approve_the_next_email(redis, audit_s
     assert (await deps.repo.get_approval(second))["status"] == "pending"
 
 
+async def test_slack_outage_keeps_approval_pending_and_unsent(redis, audit_sink):
+    class DownSlack:
+        async def post_approval(self, *a, **k):
+            raise RuntimeError("slack down")
+
+    deps = build_deps(repo=MemoryRepo(), redis=redis, slack=DownSlack())
+    st = await SdrRunner(deps).start("Fintech companies", "slackdown", max_accounts=1)
+    assert st["pending_approvals"] == 1 and deps.sender.sent == []
+    approval = (await deps.repo.pending_approvals())[0]
+    assert approval["slack_message_ts"] is None
+    assert "slack_notify_failed" in {r["action"] for r in audit_sink.records}
+    # still resolvable out-of-band (API/MCP) even though Slack never saw it
+    await deps.gate.resolve_approval(approval["id"], "approved", "api")
+    assert (await deps.repo.get_approval(approval["id"]))["status"] == "approved"
+
+
+async def test_apollo_failure_ends_campaign_with_visible_error(redis, audit_sink):
+    class BrokenApollo:
+        async def search_companies(self, *a, **k):
+            raise RuntimeError("401 Unauthorized")
+
+    deps = build_deps(repo=MemoryRepo(), redis=redis)
+    deps.apollo = BrokenApollo()
+    st = await SdrRunner(deps).start("Fintech companies", "apollo-down", max_accounts=1)
+    assert st["finished"] and st["accounts_queued"] == 0 and "discovery failed" in st["errors"][0]
+
+
 def test_reply_classifier():
     assert classify_reply("I'm out of office until Monday") == "ooo"
     assert classify_reply("not interested, thanks") == "negative"

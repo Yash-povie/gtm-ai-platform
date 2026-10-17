@@ -117,3 +117,12 @@ async def test_integration_rate_limit_window(redis):
     rl = RateLimiter(redis)
     results = [await rl.check_integration("apollo", limit=3, window_seconds=60) for _ in range(5)]
     assert results == [True, True, True, False, False]
+
+
+async def test_slack_ok_false_raises_clear_error():
+    import httpx
+
+    handler = lambda req: httpx.Response(200, json={"ok": False, "error": "invalid_auth"})  # noqa: E731
+    http = httpx.AsyncClient(transport=httpx.MockTransport(handler), base_url="https://slack.com/api")
+    with pytest.raises(slack.SlackError, match="invalid_auth"):
+        await slack.SlackClient("xoxb-live", http=http).post_approval("id", "t", "d", "r")

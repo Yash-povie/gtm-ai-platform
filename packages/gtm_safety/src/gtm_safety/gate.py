@@ -2,6 +2,7 @@
 
 import hashlib
 import hmac
+import logging
 from datetime import UTC, datetime
 from typing import Any
 
@@ -19,6 +20,9 @@ from gtm_safety.rate_limiter import RateLimiter
 def destructive_confirm_token(secret: str, action: str, target: str) -> str:
     """Operator-issued token. It is never returned by a tool result; it is logged for the operator."""
     return hmac.new(secret.encode(), f"{action}|{target.lower()}".encode(), hashlib.sha256).hexdigest()[:12]
+
+
+log = logging.getLogger(__name__)
 
 
 class ApprovalError(Exception):
@@ -68,8 +72,13 @@ class SafetyGate:
             action_type=action_type, target_entity_id=target_id, payload_snapshot=payload,
             safety_tier=decision.tier, reason="; ".join(decision.reasons) or decision.rule_triggered,
             expires_at=expiry(hours=self.s.approval_ttl_hours))
-        ts = await self.slack.post_approval(str(approval["id"]), title, details, approval["reason"])
-        approval = await self.repo.update_approval(approval["id"], slack_message_ts=ts)
+        try:
+            ts = await self.slack.post_approval(str(approval["id"]), title, details, approval["reason"])
+            approval = await self.repo.update_approval(approval["id"], slack_message_ts=ts)
+        except Exception as e:  # the request stays pending and resolvable via API/MCP; never lose it or send unapproved
+            log.warning("slack notification failed for approval %s: %s", approval["id"], e)
+            await audit("safety_gate", "slack_notify_failed", action_type, target_id, "approve",
+                        after={"approval_id": str(approval["id"]), "error": str(e)[:200]})
         await audit("safety_gate", "approval_requested", action_type, target_id, "approve",
                     after={"approval_id": str(approval["id"])})
         return approval

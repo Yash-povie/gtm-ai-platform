@@ -44,6 +44,10 @@ def build_approval_blocks(approval_id: str, title: str, details: str, reason: st
     ]
 
 
+class SlackError(Exception):
+    """Slack returns HTTP 200 with {"ok": false, "error": ...} for auth/channel problems."""
+
+
 class SlackClient(BaseClient):
     name = "slack"
 
@@ -66,4 +70,6 @@ class SlackClient(BaseClient):
             json={"channel": self.channel, "text": title, "blocks": blocks},
             headers={"Authorization": f"Bearer {self.api_key}"},
         )
+        if not data.get("ok"):
+            raise SlackError(data.get("error", "unknown_error"))
         return data["ts"]

@@ -76,7 +76,10 @@ def make_nodes(d: SdrDeps) -> dict:  # noqa: C901 - one closure per node keeps d
     async def discover_accounts_node(state: SDRGraphState) -> dict:
         limit = state.get("max_accounts", 10)
         # Over-fetch: customers and low-scoring (tier_3) accounts are dropped after this step.
-        found = await d.apollo.search_companies(state["parsed_icp_filters"], limit=max(50, limit * 10))
+        try:
+            found = await d.apollo.search_companies(state["parsed_icp_filters"], limit=max(50, limit * 10))
+        except Exception as e:  # surface in campaign status instead of crashing the whole run
+            return {"candidate_accounts": [], "errors": [f"discovery failed: {type(e).__name__}: {e}"]}
         cands = []
         for a in found:
             if a.is_customer:
