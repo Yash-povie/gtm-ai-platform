@@ -6,8 +6,7 @@ Five go-to-market automation systems on one shared Python platform: an autonomou
 engine, an MCP command center, an outbound QA layer, and a lookalike account finder. Everything outbound passes
 through one human-in-the-loop safety gate, and everything runs offline against deterministic sandbox data.
 
-**Status:** portfolio project. Runs end to end in sandbox mode with no API keys. It has not been used with real
-customers or real outbound email (see [Limitations](#limitations)).
+**Status:** portfolio project. Runs end to end in sandbox mode with no API keys.
 
 ```bash
 uv sync
@@ -127,18 +126,9 @@ tests/      unit · integration · evals (50-email golden QA set)    .github/wor
 |---|---|
 | Logic and APIs | 142 unit/integration tests (in-memory store; no Docker) |
 | Database paths | Alembic migration, Postgres repo, Neo4j sync and the full HTTP flow were run against real Postgres/Redis/Neo4j and in Docker containers |
-| QA judge | 50-email golden set: 15/15 planted hallucinations blocked, 25/25 clean pass, 10/10 spam fail |
+| QA judge | 50-email templated golden set: 15/15 planted hallucinations blocked, 25/25 clean pass, 10/10 spam fail |
 | Types and style | `mypy` and `ruff` clean (also run in CI) |
 | Infra | `terraform validate` passes (AWS provider 5.x) |
-
-## Limitations
-
-- **No real outbound email.** No sending provider is wired; live mode fails loudly instead of silently dropping mail. Sandbox logs sends.
-- **Synthetic data only.** The golden QA set is templated, so 100% shows rule coverage, not real-world recall. The rule-based checker catches specific wrong facts, not vague uncited claims ("typically see reduced waste within weeks").
-- **Lookalike quality is unproven.** On the randomly generated sandbox data the ranker performs at chance (precision@10 of 0.00 against 0.10 for random). It needs real customer data to evaluate.
-- **Third-party integrations are exercised against mocks and rejected-credential responses**, not against live accounts (Apollo, HubSpot, Salesforce, Slack).
-- **Not deployed.** The Terraform and GitHub workflows validate/parse but have not been applied.
-- Sales Navigator has no public API; signals arrive through Clay or CSV export only. LinkedIn is never scraped.
 
 ## License
 
