@@ -1,0 +1,62 @@
+[project]
+name = "gtm-ai-portfolio"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "gtm-core",
+    "gtm-integrations",
+    "gtm-safety",
+    "sys1-autonomous-sdr",
+    "sys2-signal-engine",
+    "sys3-command-center-mcp",
+    "sys4-outbound-qa",
+    "sys5-lookalike-finder",
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "arq>=0.26",
+    "alembic>=1.13",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.24",
+    "fakeredis>=2.26",
+    "respx>=0.21",
+    "ruff>=0.6",
+    "mypy>=1.11",
+]
+
+[tool.uv.workspace]
+members = ["packages/*", "systems/*"]
+
+[tool.uv.sources]
+gtm-core = { workspace = true }
+gtm-integrations = { workspace = true }
+gtm-safety = { workspace = true }
+sys1-autonomous-sdr = { workspace = true }
+sys2-signal-engine = { workspace = true }
+sys3-command-center-mcp = { workspace = true }
+sys4-outbound-qa = { workspace = true }
+sys5-lookalike-finder = { workspace = true }
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+pythonpath = ["."]
+markers = ["integration: needs docker services (postgres/redis/neo4j)"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+extend-exclude = ["migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+ignore = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true
+explicit_package_bases = true

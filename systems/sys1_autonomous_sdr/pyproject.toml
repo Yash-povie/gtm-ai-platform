@@ -1,0 +1,28 @@
+[project]
+name = "sys1-autonomous-sdr"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "gtm-core",
+    "gtm-integrations",
+    "gtm-safety",
+    "sys4-outbound-qa",
+    "langgraph>=0.2.40",
+    "langgraph-checkpoint-postgres>=2.0",
+    "psycopg[binary,pool]>=3.2",
+    "anthropic>=0.40",
+    "fastapi>=0.115",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/sys1_autonomous_sdr"]
+
+[tool.uv.sources]
+gtm-core = { workspace = true }
+gtm-integrations = { workspace = true }
+gtm-safety = { workspace = true }
+sys4-outbound-qa = { workspace = true }
