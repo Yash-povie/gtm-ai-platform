@@ -43,7 +43,6 @@ class ReplyRequest(BaseModel):
 
 @router.post("/campaigns", status_code=202)
 async def launch(req: CampaignRequest, bg: BackgroundTasks) -> dict:
-    rt = get_runtime()
     thread_id = f"{req.campaign_id}:{__import__('uuid').uuid4().hex[:8]}"
     bg.add_task(_run_campaign, req.icp_prompt, req.campaign_id, req.max_accounts, req.value_prop, thread_id)
     return {"thread_id": thread_id, "status_url": f"/api/v1/sdr/campaigns/{thread_id}"}
