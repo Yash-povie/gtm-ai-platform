@@ -138,8 +138,9 @@ def make_nodes(d: SdrDeps) -> dict:  # noqa: C901 - one closure per node keeps d
         acct = await d.repo.get_account_by_id(cur["account_id"])
         contact = next(c for c in await d.repo.list_contacts(cur["account_id"]) if c["id"] == cur["contact_id"])
         signals = await d.repo.list_signals(account_id=cur["account_id"])
-        signal = next((s for s in signals if s["id"] == cur.get("trigger_signal_id")), signals[0] if signals else None)
-        facts = build_source_facts(acct, contact, signal)
+        open_sigs = [s for s in signals if s["processed_at"] is None] or signals
+        open_sigs.sort(key=lambda s: s["id"] != cur.get("trigger_signal_id"))  # trigger first (stable sort)
+        facts = build_source_facts(acct, contact, open_sigs[:2])
         value_prop = state.get("value_prop") or DEFAULT_VALUE_PROP
         out = await d.drafter.draft(facts=facts, value_prop=value_prop, critique=cur.get("qa_critique"),
                                     attempt=cur["attempt_count"] + 1)

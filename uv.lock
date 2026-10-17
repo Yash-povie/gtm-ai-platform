@@ -2719,6 +2719,7 @@ dependencies = [
     { name = "gtm-safety" },
     { name = "mcp" },
     { name = "sys1-autonomous-sdr" },
+    { name = "sys2-signal-engine" },
     { name = "sys4-outbound-qa" },
     { name = "sys5-lookalike-finder" },
 ]
@@ -2730,6 +2731,7 @@ requires-dist = [
     { name = "gtm-safety", editable = "packages/gtm_safety" },
     { name = "mcp", specifier = ">=1.2" },
     { name = "sys1-autonomous-sdr", editable = "systems/sys1_autonomous_sdr" },
+    { name = "sys2-signal-engine", editable = "systems/sys2_signal_engine" },
     { name = "sys4-outbound-qa", editable = "systems/sys4_outbound_qa" },
     { name = "sys5-lookalike-finder", editable = "systems/sys5_lookalike_finder" },
 ]

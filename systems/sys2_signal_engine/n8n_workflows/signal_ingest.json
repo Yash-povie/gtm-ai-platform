@@ -1,0 +1,46 @@
+{
+  "name": "GTM Signal Ingest (simulator -> FastAPI)",
+  "nodes": [
+    {
+      "parameters": { "rule": { "interval": [{ "field": "minutes", "minutesInterval": 15 }] } },
+      "id": "n1", "name": "Every 15 minutes", "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2, "position": [200, 300]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Sales Navigator / Apollo SIGNAL SIMULATOR. Replace with a Clay or CSV-fed source in production.\n// Never scrape LinkedIn: it violates the ToS and gets accounts banned.\nconst domains = ['nimbuspay.example', 'vertexdata.example', 'apexsecure.example'];\nconst d = domains[Math.floor(Math.random() * domains.length)];\nconst now = new Date().toISOString();\nconst events = [\n  { domain: d, signal_type: 'champion_moved', source: 'sales_navigator', occurred_at: now, payload: { new_title: 'VP of Engineering' } },\n  { domain: d, signal_type: 'hiring_spike', source: 'apollo', occurred_at: now, payload: { open_roles: 6, department: 'engineering' } }\n];\nreturn [{ json: { body: JSON.stringify(events) } }];"
+      },
+      "id": "n2", "name": "Simulate signals", "type": "n8n-nodes-base.code",
+      "typeVersion": 2, "position": [440, 300]
+    },
+    {
+      "parameters": {
+        "action": "hmac", "type": "SHA256", "value": "={{ $json.body }}",
+        "dataPropertyName": "signature", "secret": "={{ $env.N8N_WEBHOOK_SECRET }}", "encoding": "hex"
+      },
+      "id": "n3", "name": "HMAC-SHA256", "type": "n8n-nodes-base.crypto",
+      "typeVersion": 1, "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST", "url": "http://api:8000/webhooks/signals/ingest",
+        "sendHeaders": true,
+        "headerParameters": { "parameters": [
+          { "name": "X-N8N-Signature", "value": "={{ $json.signature }}" },
+          { "name": "Content-Type", "value": "application/json" }
+        ] },
+        "sendBody": true, "contentType": "raw", "rawContentType": "application/json", "body": "={{ $json.body }}",
+        "options": { "timeout": 10000 }
+      },
+      "id": "n4", "name": "POST /webhooks/signals/ingest", "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2, "position": [920, 300]
+    }
+  ],
+  "connections": {
+    "Every 15 minutes": { "main": [[{ "node": "Simulate signals", "type": "main", "index": 0 }]] },
+    "Simulate signals": { "main": [[{ "node": "HMAC-SHA256", "type": "main", "index": 0 }]] },
+    "HMAC-SHA256": { "main": [[{ "node": "POST /webhooks/signals/ingest", "type": "main", "index": 0 }]] }
+  },
+  "settings": { "executionOrder": "v1" },
+  "active": false
+}

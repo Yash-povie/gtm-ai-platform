@@ -125,7 +125,7 @@ def champion_links() -> dict[str, list[str]]:
 
 def signals(now: datetime | None = None) -> list[dict]:
     """~120 deterministic raw signal events relative to `now`."""
-    now = now or datetime(2026, 1, 1, tzinfo=UTC)
+    now = now or datetime.now(UTC)  # offsets are deterministic; anchoring to "now" keeps signals fresh after decay
     rng = random.Random(SEED + 2)
     events = []
     for acc in rng.sample(accounts(), 120):

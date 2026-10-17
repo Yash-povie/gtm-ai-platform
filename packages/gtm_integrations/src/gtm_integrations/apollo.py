@@ -42,6 +42,18 @@ class ApolloClient(BaseClient):
             if o.get("primary_domain")
         ]
 
+    async def get_company(self, domain: str) -> AccountData | None:
+        if self.mock:
+            return next((a for a in dataset.accounts() if a.domain == domain), None)
+        data = await self._request(
+            "GET", "/api/v1/organizations/enrich", params={"domain": domain}, headers=self._headers()
+        )
+        o = data.get("organization")
+        if not o:
+            return None
+        return AccountData(domain=domain, name=o.get("name", domain), industry=o.get("industry"),
+                           employee_count=o.get("estimated_num_employees"))
+
     async def search_people(self, domain: str, titles: list[str] | None = None, limit: int = 3) -> list[ContactData]:
         if self.mock:
             people = dataset.contacts().get(domain, [])

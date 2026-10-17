@@ -88,7 +88,7 @@ class DraftOut(BaseModel):
     facts_used: list[str]
 
 
-def build_source_facts(account: dict, contact: dict, signal: dict | None) -> dict[str, Any]:
+def build_source_facts(account: dict, contact: dict, signal: dict | list | None) -> dict[str, Any]:
     raw = account.get("firmographic_raw") or {}
     facts: dict[str, Any] = {
         "account": {
@@ -99,8 +99,10 @@ def build_source_facts(account: dict, contact: dict, signal: dict | None) -> dic
         },
         "contact": {"first_name": contact.get("first_name"), "title": contact.get("title")},
     }
-    if signal:
-        facts["signal"] = {"type": signal["signal_type"], "payload": signal.get("raw_payload", {})}
+    signals = [signal] if isinstance(signal, dict) else list(signal or [])
+    if signals:
+        facts["signals"] = [{"type": s["signal_type"], "payload": s.get("raw_payload", {})} for s in signals]
+        facts["signal"] = facts["signals"][0]
     return facts
 
 
@@ -131,22 +133,26 @@ class Drafter:
 
     @staticmethod
     def _template(facts: dict, value_prop: str) -> DraftOut:
-        a, c, sig = facts["account"], facts["contact"], facts.get("signal")
+        a, c = facts["account"], facts["contact"]
+        sigs = facts.get("signals") or ([facts["signal"]] if facts.get("signal") else [])
         techs = a.get("tech_stack") or []
         used = [f"company: {a['name']}"]
-        if sig and sig["type"] == "hiring_spike" and sig["payload"].get("open_roles"):
-            n = sig["payload"]["open_roles"]
-            hook = f"I saw {a['name']} is hiring {n} engineers."
-            used.append(f"hiring_spike: {n} open roles")
-        elif sig and sig["type"] == "funding_round" and a.get("funding_stage"):
-            hook = f"Congrats on the {a['funding_stage']} round."
-            used.append(f"funding_stage: {a['funding_stage']}")
-        elif sig and sig["type"] in ("champion_moved", "job_change") and sig["payload"].get("new_title"):
-            hook = f"Congrats on the new {sig['payload']['new_title']} role at {a['name']}."
-            used.append(f"new_title: {sig['payload']['new_title']}")
-        else:
-            hook = f"I noticed {a['name']} is growing in {a.get('industry') or 'your space'}."
+        hooks: list[str] = []
+        for sig in sigs[:2]:
+            if sig["type"] == "hiring_spike" and sig["payload"].get("open_roles"):
+                n = sig["payload"]["open_roles"]
+                hooks.append(f"I saw {a['name']} is hiring {n} engineers.")
+                used.append(f"hiring_spike: {n} open roles")
+            elif sig["type"] == "funding_round" and a.get("funding_stage"):
+                hooks.append(f"Congrats on the {a['funding_stage']} round.")
+                used.append(f"funding_stage: {a['funding_stage']}")
+            elif sig["type"] in ("champion_moved", "job_change") and sig["payload"].get("new_title"):
+                hooks.append(f"Congrats on the new {sig['payload']['new_title']} role at {a['name']}.")
+                used.append(f"new_title: {sig['payload']['new_title']}")
+        if not hooks:
+            hooks.append(f"I noticed {a['name']} is growing in {a.get('industry') or 'your space'}.")
             used.append(f"industry: {a.get('industry')}")
+        hook = " ".join(hooks)
         if len(techs) >= 2:
             tech_line = f" With {techs[0]} and {techs[1]} in your stack, cloud spend tends to climb fast."
             used.append(f"tech_stack: {techs[0]}, {techs[1]}")
