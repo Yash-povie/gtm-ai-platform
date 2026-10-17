@@ -4,9 +4,10 @@ import json
 import logging
 import re
 import time
+from typing import Any
 
-from anthropic import AsyncAnthropic
 from gtm_core.config import get_settings
+from gtm_core.llm import complete, llm_enabled
 from gtm_core.observability import new_trace_id, span
 from gtm_core.schemas import QAResult
 
@@ -48,16 +49,11 @@ def _extract_json(text: str) -> dict:
 
 
 class QAJudge:
-    def __init__(self, model: str | None = None, client: AsyncAnthropic | None = None, use_llm: bool | None = None):
+    def __init__(self, model: str | None = None, client: Any = None, use_llm: bool | None = None):
         s = get_settings()
         self.model = model or s.llm_judge_model
-        self.use_llm = (s.anthropic_api_key not in ("", "mock")) if use_llm is None else use_llm
+        self.use_llm = llm_enabled() if use_llm is None else use_llm
         self._client = client
-
-    def _get_client(self) -> AsyncAnthropic:
-        if self._client is None:
-            self._client = AsyncAnthropic(api_key=get_settings().anthropic_api_key)
-        return self._client
 
     async def evaluate(self, inp: JudgeInput) -> QAResult:
         t0 = time.perf_counter()
@@ -84,13 +80,9 @@ class QAJudge:
         return result
 
     async def _llm_evaluate(self, inp: JudgeInput, det: QAResult) -> QAResult:
-        resp = await self._get_client().messages.create(
-            model=self.model,
-            max_tokens=900,
-            system=JUDGE_V1_SYSTEM,
-            messages=[{"role": "user", "content": _build_user_message(inp)}],
-        )
-        raw = _extract_json("".join(getattr(b, "text", "") for b in resp.content))
+        text = await complete(system=JUDGE_V1_SYSTEM, user=_build_user_message(inp), model=self.model,
+                              max_tokens=900, client=self._client, json_mode=True)
+        raw = _extract_json(text)
         # Safety floor: the lower hallucination score wins; claims are the union.
         h = min(float(raw.get("hallucination_score", 0.0)), det.hallucination_score)
         t = float(raw.get("tone_score", det.tone_score))

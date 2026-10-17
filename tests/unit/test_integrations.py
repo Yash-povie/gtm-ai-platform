@@ -126,3 +126,32 @@ async def test_slack_ok_false_raises_clear_error():
     http = httpx.AsyncClient(transport=httpx.MockTransport(handler), base_url="https://slack.com/api")
     with pytest.raises(slack.SlackError, match="invalid_auth"):
         await slack.SlackClient("xoxb-live", http=http).post_approval("id", "t", "d", "r")
+
+
+async def test_openai_compat_adapter_strips_thinking_and_retries_without_json_mode(monkeypatch):
+    import httpx
+    from gtm_core import llm
+    from gtm_core.config import get_settings
+
+    monkeypatch.setenv("LLM_PROVIDER", "openai_compat")
+    monkeypatch.setenv("LLM_API_KEY", "k")
+    monkeypatch.setenv("LLM_DISABLE_THINKING", "true")
+    get_settings.cache_clear()
+    seen = []
+
+    def handler(req: httpx.Request) -> httpx.Response:
+        body = json.loads(req.content)
+        seen.append(body)
+        if "response_format" in body:
+            return httpx.Response(400, json={"error": "unsupported"})
+        return httpx.Response(200, json={"choices": [{"message": {"content": "<think>hmm</think>{\"ok\": true}"}}]})
+
+    try:
+        http = httpx.AsyncClient(transport=httpx.MockTransport(handler))
+        out = await llm.complete(system="s", user="u", model="m", http=http, json_mode=True)
+    finally:
+        get_settings.cache_clear()
+    assert out == '{"ok": true}'
+    assert "response_format" in seen[0] and "response_format" not in seen[1]
+    assert seen[0]["chat_template_kwargs"] == {"enable_thinking": False}
+    assert llm.llm_enabled() in (True, False)

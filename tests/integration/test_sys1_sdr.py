@@ -3,6 +3,8 @@
 Runs without docker: MemoryRepo + fakeredis + InMemorySaver + sandbox sender.
 """
 
+import json
+
 import pytest
 from gtm_core.config import Settings
 from gtm_core.repo import MemoryRepo
@@ -213,6 +215,51 @@ async def test_apollo_failure_ends_campaign_with_visible_error(redis, audit_sink
     deps.apollo = BrokenApollo()
     st = await SdrRunner(deps).start("Fintech companies", "apollo-down", max_accounts=1)
     assert st["finished"] and st["accounts_queued"] == 0 and "discovery failed" in st["errors"][0]
+
+
+async def test_llm_icp_output_is_normalized_and_grounded():
+    """Real model output seen live: non-canonical stages, invented tech, huge keyword lists."""
+    from sys1_autonomous_sdr.prompts import IcpParser
+
+    class Fake:
+        class messages:  # noqa: N801
+            @staticmethod
+            async def create(**_):
+                body = json.dumps({"industries": ["fintech"], "funding_stages": ["seed", "series_a", "series_b"],
+                                   "tech_keywords": ["AWS", "Amazon Web Services", "EC2", "S3", "Lambda"],
+                                   "headcount_min": 50, "headcount_max": 5, "titles": ["Chief Wizard"]})
+                return type("R", (), {"content": [type("B", (), {"text": body})()]})()
+
+    f = await IcpParser(use_llm=True, client=Fake()).parse("Fintech companies using AWS")
+    assert f["industries"] == ["Fintech"] and f["tech_keywords"] == ["AWS"]  # EC2/S3/Lambda dropped (not asked for)
+    assert f["funding_stages"] == []  # the user never mentioned a stage: invented constraints are removed
+    assert (f["headcount_min"], f["headcount_max"]) == (0, 10**9)  # no numbers in the prompt, nonsense range reset
+    assert f["titles"] == ["VP of Engineering", "Head of Data", "CTO"]
+    g = await IcpParser(use_llm=True, client=Fake()).parse("Series B Fintechs using AWS with 100 to 900 employees")
+    assert g["funding_stages"] == ["Series B"]  # 'series_b' normalized and grounded in the prompt
+
+
+async def test_llm_drafter_retries_malformed_json_then_falls_back():
+    calls = {"n": 0}
+
+    def fake(replies):
+        class Fake:
+            class messages:  # noqa: N801
+                @staticmethod
+                async def create(**_):
+                    calls["n"] += 1
+                    text = replies[min(calls["n"] - 1, len(replies) - 1)]
+                    return type("R", (), {"content": [type("B", (), {"text": text})()]})()
+        return Fake()
+
+    facts = {"account": {"name": "Acme", "tech_stack": ["AWS", "GCP"]}, "contact": {"first_name": "Ann"}}
+    good = json.dumps({"subject": "Hi", "body": "Hi Ann,\n\nWorth a chat?", "facts_used": ["company: Acme"]})
+    bad = '{"subject": Unquoted subject, "body": "x"}'  # exactly what the live model emitted
+    out = await Drafter(use_llm=True, client=fake([bad, good])).draft(facts=facts, value_prop="vp")
+    assert calls["n"] == 2 and out.subject == "Hi"  # second attempt succeeded
+    calls["n"] = 0
+    out = await Drafter(use_llm=True, client=fake([bad])).draft(facts=facts, value_prop="vp")
+    assert calls["n"] == 2 and "Acme" in out.subject  # both failed -> safe fact-only template
 
 
 def test_reply_classifier():

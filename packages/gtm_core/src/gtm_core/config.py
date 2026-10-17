@@ -24,6 +24,10 @@ class Settings(BaseSettings):
     anthropic_api_key: str = "mock"
     llm_primary_model: str = "claude-sonnet-5-5"
     llm_judge_model: str = "claude-haiku-5-5"
+    llm_provider: Literal["anthropic", "openai_compat"] = "anthropic"
+    llm_base_url: str = "https://integrate.api.nvidia.com/v1"  # used when llm_provider=openai_compat
+    llm_api_key: str = "mock"
+    llm_disable_thinking: bool = False  # NVIDIA/vLLM reasoning models: send chat_template_kwargs.enable_thinking=false
     embedding_provider: Literal["local_fastembed", "openai", "hash"] = "hash"
     embedding_dim: int = 1536
 

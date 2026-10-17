@@ -1,11 +1,12 @@
 """Versioned prompts, ICP parser and email drafter (Claude when keyed, deterministic otherwise)."""
 
 import json
+import logging
 import re
 from typing import Any
 
-from anthropic import AsyncAnthropic
 from gtm_core.config import get_settings
+from gtm_core.llm import complete, llm_enabled
 from pydantic import BaseModel, Field
 
 PROMPT_NAME = "sdr_email"
@@ -42,6 +43,9 @@ def _json_from(text: str) -> dict:
     return json.loads(m.group(0))
 
 
+log = logging.getLogger(__name__)
+
+
 class IcpFilters(BaseModel):
     industries: list[str] = Field(default_factory=list)
     funding_stages: list[str] = Field(default_factory=list)
@@ -69,23 +73,55 @@ def parse_icp_deterministic(prompt: str) -> IcpFilters:
     return f
 
 
+_TECH_CANON = {t.lower(): t for t in TECH} | {"amazon web services": "AWS", "google cloud": "GCP", "microsoft azure": "Azure",
+                                             "k8s": "Kubernetes", "postgresql": "Postgres"}
+_STAGE_RE = re.compile(r"series[\s_-]*([a-f])|seed", re.I)
+
+
+def normalize_filters(f: IcpFilters, prompt: str) -> IcpFilters:
+    """LLM output -> canonical, prompt-grounded filters. Anything the user did not ask for is dropped,
+    because an invented constraint silently shrinks the search to zero accounts."""
+    low = prompt.lower()
+    det = parse_icp_deterministic(prompt)
+    canon_ind = {v.lower(): v for v in INDUSTRY_ALIASES.values()}
+    inds = {canon_ind.get(x.lower()) or next((v for k, v in INDUSTRY_ALIASES.items() if k in x.lower()), None)
+            for x in f.industries}
+    stages = set()
+    for x in f.funding_stages:
+        m = _STAGE_RE.search(x)
+        if m:
+            stage = f"Series {m.group(1).upper()}" if m.group(1) else "Seed"
+            if stage.lower() in low:  # grounded in what the user actually wrote
+                stages.add(stage)
+    techs = []
+    for x in f.tech_keywords:
+        t = _TECH_CANON.get(x.lower())
+        if t and t.lower() in low and t not in techs:
+            techs.append(t)
+    titles = [t for t in TITLES if t.lower() in {x.lower() for x in f.titles}]
+    has_digits = bool(re.search(r"\d", prompt))
+    lo, hi = (f.headcount_min, f.headcount_max) if has_digits else (0, 10**9)
+    if lo < 0 or hi < lo:
+        lo, hi = det.headcount_min, det.headcount_max
+    return IcpFilters(
+        industries=sorted(i for i in inds if i) or det.industries, funding_stages=sorted(stages) or det.funding_stages,
+        tech_keywords=techs or det.tech_keywords, headcount_min=lo, headcount_max=hi,
+        titles=titles or det.titles)
+
+
 class IcpParser:
-    def __init__(self, use_llm: bool | None = None, client: AsyncAnthropic | None = None):
-        s = get_settings()
-        self.use_llm = (s.anthropic_api_key not in ("", "mock")) if use_llm is None else use_llm
+    def __init__(self, use_llm: bool | None = None, client: Any = None):
+        self.use_llm = llm_enabled() if use_llm is None else use_llm
         self._client = client
 
     async def parse(self, prompt: str) -> dict:
         if self.use_llm:
             try:
-                client = self._client or AsyncAnthropic(api_key=get_settings().anthropic_api_key)
-                resp = await client.messages.create(
-                    model=get_settings().llm_primary_model, max_tokens=400, system=ICP_SYSTEM,
-                    messages=[{"role": "user", "content": prompt}])
-                text = "".join(getattr(b, "text", "") for b in resp.content)
-                return IcpFilters.model_validate(_json_from(text)).model_dump()
-            except Exception:  # fall through to deterministic parse
-                pass
+                text = await complete(system=ICP_SYSTEM, user=prompt, model=get_settings().llm_primary_model,
+                                      max_tokens=800, client=self._client, json_mode=True)
+                return normalize_filters(IcpFilters.model_validate(_json_from(text)), prompt).model_dump()
+            except Exception as e:  # fall through to deterministic parse
+                log.warning("LLM ICP parse failed (%s: %s); using rule-based parse", type(e).__name__, e)
         return parse_icp_deterministic(prompt).model_dump()
 
 
@@ -116,27 +152,29 @@ def build_source_facts(account: dict, contact: dict, signal: dict | list | None)
 class Drafter:
     """LLM drafter when keyed; otherwise a deterministic template that only states facts it was given."""
 
-    def __init__(self, use_llm: bool | None = None, client: AsyncAnthropic | None = None):
-        s = get_settings()
-        self.use_llm = (s.anthropic_api_key not in ("", "mock")) if use_llm is None else use_llm
+    def __init__(self, use_llm: bool | None = None, client: Any = None):
+        self.use_llm = llm_enabled() if use_llm is None else use_llm
         self._client = client
 
     async def draft(self, *, facts: dict, value_prop: str, critique: str | None = None, attempt: int = 1) -> DraftOut:
         if self.use_llm:
-            try:
-                return await self._llm(facts, value_prop, critique)
-            except Exception:
-                pass
+            for n in (1, 2):  # models occasionally emit malformed JSON: one retry, then the safe template
+                try:
+                    return await self._llm(facts, value_prop, critique)
+                except Exception as e:
+                    log.warning("LLM draft attempt %d failed (%s: %s)", n, type(e).__name__, e)
+            log.warning("LLM drafter unavailable; using the fact-only template")
         return self._template(facts, value_prop)
 
     async def _llm(self, facts: dict, value_prop: str, critique: str | None) -> DraftOut:
-        client = self._client or AsyncAnthropic(api_key=get_settings().anthropic_api_key)
-        resp = await client.messages.create(
-            model=get_settings().llm_primary_model, max_tokens=700, system=DRAFT_SYSTEM,
-            messages=[{"role": "user", "content": DRAFT_USER.format(
-                facts=json.dumps(facts, default=str, indent=2), value_prop=value_prop, critique=critique or "none")}])
-        text = "".join(getattr(b, "text", "") for b in resp.content)
-        return DraftOut.model_validate(_json_from(text))
+        text = await complete(
+            system=DRAFT_SYSTEM, model=get_settings().llm_primary_model, max_tokens=900, client=self._client, json_mode=True,
+            user=DRAFT_USER.format(facts=json.dumps(facts, default=str, indent=2), value_prop=value_prop,
+                                   critique=critique or "none"))
+        out = DraftOut.model_validate(_json_from(text))
+        if not out.subject.strip() or not out.body.strip():
+            raise ValueError("empty subject/body")
+        return out
 
     @staticmethod
     def _template(facts: dict, value_prop: str) -> DraftOut:
