@@ -32,6 +32,10 @@ def unsubscribe_url(email: str) -> str:
     return f"{get_settings().unsubscribe_base_url}{UNSUB_MARKER}{build_unsubscribe_token(email)}"
 
 
+def unsubscribe_headers(email: str) -> dict[str, str]:
+    return {"List-Unsubscribe": f"<{unsubscribe_url(email)}>", "List-Unsubscribe-Post": "List-Unsubscribe=One-Click"}
+
+
 def add_footer(email: str, body_text: str, body_html: str | None = None) -> tuple[str, str, dict[str, str]]:
     """Append unsubscribe link + postal address; returns (text, html, extra_headers)."""
     s = get_settings()

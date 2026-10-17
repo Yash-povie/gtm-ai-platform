@@ -24,7 +24,7 @@ def pytest_collection_modifyitems(config, items):
         return
     skip = pytest.mark.skip(reason="docker services (postgres/redis/neo4j) not running")
     for item in items:
-        if "integration" in item.keywords:
+        if item.get_closest_marker("integration"):
             item.add_marker(skip)
 
 

@@ -3,6 +3,8 @@ name = "sys2-signal-engine"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "gtm-safety",
+    "sys1-autonomous-sdr",
     "gtm-core",
     "gtm-integrations",
     "fastapi>=0.115",
@@ -18,3 +20,5 @@ packages = ["src/sys2_signal_engine"]
 [tool.uv.sources]
 gtm-core = { workspace = true }
 gtm-integrations = { workspace = true }
+sys1-autonomous-sdr = { workspace = true }
+gtm-safety = { workspace = true }

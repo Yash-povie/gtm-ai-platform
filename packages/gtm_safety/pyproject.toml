@@ -3,6 +3,7 @@ name = "gtm-safety"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "gtm-integrations",
     "gtm-core",
     "pyjwt>=2.9",
 ]
@@ -16,3 +17,4 @@ packages = ["src/gtm_safety"]
 
 [tool.uv.sources]
 gtm-core = { workspace = true }
+gtm-integrations = { workspace = true }

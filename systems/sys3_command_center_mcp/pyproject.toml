@@ -3,6 +3,7 @@ name = "sys3-command-center-mcp"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "sys1-autonomous-sdr",
     "gtm-core",
     "gtm-integrations",
     "gtm-safety",
@@ -24,3 +25,4 @@ gtm-integrations = { workspace = true }
 gtm-safety = { workspace = true }
 sys4-outbound-qa = { workspace = true }
 sys5-lookalike-finder = { workspace = true }
+sys1-autonomous-sdr = { workspace = true }
